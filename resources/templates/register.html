@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="ISO-8859-1">
+    <title>SHCTI-Register</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<style>
+    
+     .footer {
+      color: #fff;
+      padding: 20px 0;
+      margin-top: auto;
+    }
+</style>
+
+<body>
+
+    <!-- create navigation bar ( header) -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/home">SHCTI</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/home">Home</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav mr-right">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/registration">Register</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login">Login</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <br>
+    <!-- Create HTML registration form -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+
+                <!-- success message -->
+                <div th:if="${param.success}" class="alert alert-info">
+                    You've successfully registered to our awesome app!
+                </div>
+
+                <h1>Registration</h1>
+
+                <form th:action="@{/registration}" method="post" th:object="${user}">
+                    <div class="form-group">
+                        <label class="control-label" for="firstName">First Name</label>
+                        <input id="firstName" class="form-control" th:field="*{name}" required autofocus="autofocus">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label" for="email">Email</label>
+                        <input id="email" class="form-control" th:field="*{email_id}" required autofocus="autofocus">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label" for="password">Password</label>
+                        <input id="password" class="form-control" type="password" th:field="*{password}" required autofocus="autofocus">
+                    </div>
+                      <div class="form-group">
+				        <label class="control-label" for="ipAddress">IP Address</label>
+				        <input id="ipAddressInput" class="form-control" type="text" th:field="*{ipAddress}" required autofocus="autofocus" style="display: none;">
+				      </div>
+                    
+                    <div class="form-group">
+                        <label class="control-label" for="role">Role</label>
+                        <select id="role" th:field="*{role}" class="form-control form-control-lg">
+                            <option value="USER">USER</option>
+                            <option value="ADMIN">ADMIN</option>
+                            <option value="EMPLOYEE">EMPLOYEE</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Register</button>
+                        <span>Already registered? <a href="/" th:href="@{/login}">Login here</a></span>
+                         <span class="mt-2">Forgot your password? <a href="/" th.href="@{/forgotpassword}">Click here to reset your password</a></span> 
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+<br/>
+<br/>
+<br/>
+<!-- Footer -->
+<footer class="footer bg-dark fixed-bottom">
+    <span>&copy; 2024 Secure Healthcare Contact Tracer. All Rights Reserved.</span>
+</footer>
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    
+   <script>
+    // Function to get the user's IP address using a third-party service
+    function getUserIpAddress() {
+        fetch('https://api64.ipify.org?format=json')
+            .then(response => response.json())
+            .then(data => {
+                // Update the value of the input field with the user's IP address
+                document.getElementById('ipAddressInput').value = data.ip;
+            })
+            .catch(error => console.error('Error fetching IP address:', error));
+    }
+
+    // Call the function to get the user's IP address when the page loads
+    window.onload = function() {
+        getUserIpAddress();
+    };
+</script>
+</body>
+</html>

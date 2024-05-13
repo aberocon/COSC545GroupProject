@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="ISO-8859-1">
+    <title>SHCTI-Register</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<style>
+    
+     .footer {
+      color: #fff;
+      padding: 20px 0;
+      margin-top: auto;
+    }
+</style>
+
+<body>
+
+    <!-- create navigation bar ( header) -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/home">SHCTI</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/home">Home</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav mr-right">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/registration">Register</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login">Login</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+<br/>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div th:if="${param.error}" class="alert alert-danger">
+                    <p>Email or Password entered is Wrong. Please Check and Login Again.</p>
+                </div>
+                <h1 class="mb-4">Login</h1>
+                <form th:action="@{/login}" method="post" th:object="${user}">
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" class="form-control" th:field="*{username}" required autofocus>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" class="form-control" th:field="*{password}" required>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Log In</button>
+                        <span class="ml-2">New User? <a href="/" th:href="@{/registration}">Register here</a></span>
+                        <br/>
+                         <!-- <span class="mt-2">Forgot Password? <a th:href="@{/forgotPassword}" th:text="#{message.resetPassword}">Click here to reset your password</a></span> -->
+                         <span class="mt-2">Forgot Password?  <a href="/" th:href="@{/forgot_password}">Click here to reset your password</a></span>
+                       
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <br />
+<!-- Footer -->
+<footer class="footer bg-dark fixed-bottom">
+  <div class="container text-center">
+    <span>&copy; 2024 Secure Healthcare Contact Tracer. All Rights Reserved.</span>
+  </div>
+</footer>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

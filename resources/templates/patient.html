@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Manage Patients</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container">
+    <h2>Manage Patients</h2>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Date of Birth</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="patient : ${patients}">
+            <td th:text="${patient.id}"></td>
+            <td th:text="${patient.firstname}"></td>
+            <td th:text="${patient.lastname}"></td>
+            <td th:text="${patient.dob}"></td>
+            <td>
+                <a th:href="@{/patients/{id}(id=${patient.id})}" class="btn btn-info btn-sm">View</a>
+                <a th:href="@{/patients/{id}/edit}(id=${patient.id})" class="btn btn-primary btn-sm">Edit</a>
+                <form th:action="@{/patients/{id}/delete}(id=${patient.id})" method="post" style="display: inline;">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <a href="/patients/new" class="btn btn-success">Add New Patient</a>
+</div>
+
+</body>
+</html>

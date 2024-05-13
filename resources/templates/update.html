@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Patient Record</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Update Patient Record</h1>
+         <form action="#" th:action="@{/employeeScreen/update}" th:object="${user}" method="post" >
+            <input type="hidden" name="id" th.field="*{id}" th:value="${user.id}">
+            <input type="hidden" name="password" th.field="*{password}" th:value="${user.password}">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" th.field="*{name}" class="form-control" th:value="${user.name}">
+            </div>
+             <div class="form-group">
+                <label for="first_name">First Name</label>
+                <input type="text" id="first_name" name="first_name" th.field="*{firstName}" class="form-control" th:value="${user.first_name}">
+            </div>
+            <div class="form-group">
+                <label for="last_name">Last Name</label>
+                <input type="text" id="last_name" name="last_name" th.field="*{lastName}" class="form-control" th:value="${user.last_name}">
+            </div>
+            <div class="form-group">
+                <label for="date_of_birth">DBO</label>
+                <input th:type="date" id="date_of_birth" name="date_of_birth" th.field="*{date_of_birth}" class="form-control" th:value="${user.date_of_birth}">
+            </div>
+             <div class="form-group">
+                <label for="address">Home Address</label>
+                <input type="text" id="address" name="address" th.field="*{address}" class="form-control" th:value="${user.address}">
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" th.field="*{email}" class="form-control" th:value="${user.email}">
+            </div>
+            <div class="form-group">
+                <label for="immunization_status">Immunization Status</label>
+                <input type="text" id="immunization_status" name="immunization_status" th.field="*{immunization_status}" class="form-control" th:value="${user.immunization_status}">
+            </div>
+            <div class="form-group">
+                <label for="lastimmunization_date">Last Immunization Date</label>
+                <input th:type="date" id="lastimmunization_date" name="lastimmunization_date" th.field="*{lastimmunization_date}" class="form-control" th:value="${user.lastimmunization_date}">
+            </div>
+              <div class="form-group">
+                <label for="previous_health_conditions">Previous Health Conditions</label>
+                <input type="text" id="previous_health_conditions" name="previous_health_conditions" th.field="*{previous_health_conditions}" class="form-control" th:value="${user.previous_health_conditions}">
+            </div>
+            <button type="submit" class="btn btn-primary">Update Record</button> 
+        </form>
+        
+    </div>
+    <br/>
+    <br/>
+</body>
+</html>

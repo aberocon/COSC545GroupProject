@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Admin-Dashboard</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<style>
+     .footer {
+      color: #fff;
+      padding: 20px 0;
+      margin-top: auto;
+    }
+</style>
+
+<body>
+
+    <!-- create navigation bar ( header) -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">SHCTI Admin <span th:text="*{userDetails}"></span> Dashboard</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                  <!--   <li class="nav-item active">
+                    <h1><span th:text="${user.name}"></span> Dashboard</h1>
+                      Hi, Welcome <span th:text="*{userDetails}"></span>  
+                    </li> -->
+                </ul>
+                <ul class="navbar-nav mr-right">
+                    <li class="nav-item">
+                        <a th:href="@{/logout}" class="btn anchor" style="margin-left:500px">
+                                <i class="fa fa-arrow-circle-o-left"></i>&nbsp;Logout
+                            </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <br><br><br>
+    <div class="container">
+        <h1>Manage Users Roles</h1>  
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>User ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Iterate over users and display each user information -->
+                <tr th:each="user : ${users}">
+                    <td th:text="${user.id}"></td>
+                    <td th:text="${user.name}"></td>
+                    <td th:text="${user.email}"></td>
+                    <td>
+                        <!-- Iterate over roles of each user and display role names -->
+                        <span th:each="role : ${user.role}" th:text="${role.role}"></span>
+                    </td>
+                    <td>
+                        <a th:href="@{'adminScreen/edit/' + ${user.id}}" class="btn btn-primary">Edit</a>
+                    </td>
+                    <td>
+                        <a th:href="@{'adminScreen/delete/' + ${user.id}}" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <br />
+    <br/>
+    <div class="container">
+        <h1>User Logging Address</h1>  
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>IP Address</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Iterate over users and display each user information -->
+                <tr th:each="user : ${users}">
+                    <td th:text="${user.name}"></td>
+                    <td th:text="${user.email}"></td>
+                    <td th:text="${user.ipAddress}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <br/>
+    <br />
+    <!-- Footer -->
+<footer class="footer bg-dark fixed-bottom">
+    <span>&copy; 2024 Secure Healthcare Contact Tracer. All Rights Reserved.</span>
+</footer>
+ <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
